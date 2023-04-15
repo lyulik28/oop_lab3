@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 3</title>
+</head>
+<body>
+<p>Lab 3</p>
+
+<!--За допомогою thymeleaf передаємо значення string на кожній ітерації-->
+<ul>
+    <th:block th:each="s : ${string}">
+        <li th:utext = "${s}">
+        </li>
+    </th:block>
+</ul>
+<form method="post">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="age" placeholder="Age">
+    <input type="text" name="carModel" placeholder="Car model">
+    <input type="text" name="carColor" placeholder="Car color">
+    <input type="text" name="bicycleModel" placeholder="Bicycle model">
+    <input type="text" name="bicycleColor" placeholder="Bicycle color">
+    <input type="text" name="motorbikeModel" placeholder="Motorbike model">
+    <input type="text" name="motorbikeColor" placeholder="Motorbike color">
+    <button type="submit">ADD</button>
+</form>
+
+<p>Delete User</p>
+<input id="idToDelete" min="1" type="number" name="id" placeholder="id" required>
+<button onclick="onDelete()" type="submit">Delete</button>
+
+<p>Delete Auto</p>
+<input id="idToDeleteAuto" min="1" type="number" name="id" placeholder="id" required>
+<button onclick="onDeleteAuto()" type="submit">Delete</button>
+
+<p>Delete Bicycle</p>
+<input id="idToDeleteBicycle" min="1" type="number" name="id" placeholder="id" required>
+<button onclick="onDeleteBicycle()" type="submit">Delete</button>
+
+<p>Delete Motorbike</p>
+<input id="idToDeleteMotorbike" min="1" type="number" name="id" placeholder="id" required>
+<button onclick="onDeleteMotorbike()" type="submit">Delete</button>
+<script>
+    function onDelete() {
+        // Дістаємо значення введені у input
+        const id = +document.getElementById('idToDelete').value;
+
+        // Виконує http-запит DELETE та передає id, потім сторінка перезавантажується
+        fetch(`/${id}`, {method: 'DELETE'}).then(() => location.reload());
+    }
+
+    function onDeleteAuto() {
+        // Дістаємо значення введені у input
+        const id = +document.getElementById('idToDeleteAuto').value;
+
+        // Виконує http-запит DELETE та передає id, потім сторінка перезавантажується
+        fetch(`/auto/${id}`, {method: 'DELETE'}).then(() => location.reload());
+    }
+
+    function onDeleteBicycle() {
+        // Дістаємо значення введені у input
+        const id = +document.getElementById('idToDeleteBicycle').value;
+
+        // Виконує http-запит DELETE та передає id, потім сторінка перезавантажується
+        fetch(`/bicycle/${id}`, {method: 'DELETE'}).then(() => location.reload());
+    }
+
+    function onDeleteMotorbike() {
+        // Дістаємо значення введені у input
+        const id = +document.getElementById('idToDeleteMotorbike').value;
+
+        // Виконує http-запит DELETE та передає id, потім сторінка перезавантажується
+        fetch(`/motorbike/${id}`, {method: 'DELETE'}).then(() => location.reload());
+    }
+</script>
+</body>
+</html>
